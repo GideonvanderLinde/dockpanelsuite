@@ -205,7 +205,6 @@ namespace WeifenLuo.WinFormsUI.Docking
                         }
                         else
                             base.WndProc(ref m);
-                        Console.WriteLine(result);
                         return;
                     }
                 case (int)Win32.Msgs.WM_NCRBUTTONDOWN:

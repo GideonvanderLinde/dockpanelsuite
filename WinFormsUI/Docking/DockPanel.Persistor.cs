@@ -80,6 +80,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     set { m_formName = value; }
                 }
 
+                private string m_formText;
+                public string FormText
+                {
+                    get { return m_formText; }
+                    set { m_formText = value; }
+                }
+
                 private double m_autoHidePortion;
                 public double AutoHidePortion
                 {
@@ -273,6 +280,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                     xmlOut.WriteStartElement("Content");
                     xmlOut.WriteAttributeString("ID", dockPanel.Contents.IndexOf(content).ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteAttributeString("FormName", content.DockHandler.Form.Name);
+                    xmlOut.WriteAttributeString("FormText", content.DockHandler.Form.Text);
                     xmlOut.WriteAttributeString("PersistString", content.DockHandler.PersistString);
                     xmlOut.WriteAttributeString("AutoHidePortion", content.DockHandler.AutoHidePortion.ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteAttributeString("IsHidden", content.DockHandler.IsHidden.ToString(CultureInfo.InvariantCulture));
@@ -399,6 +407,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                     contents[i].PersistString = xmlIn.GetAttribute("PersistString");
                     contents[i].FormName = xmlIn.GetAttribute("FormName");
+                    contents[i].FormText = xmlIn.GetAttribute("FormText");
                     contents[i].AutoHidePortion = Convert.ToDouble(xmlIn.GetAttribute("AutoHidePortion"), CultureInfo.InvariantCulture);
                     contents[i].IsHidden = Convert.ToBoolean(xmlIn.GetAttribute("IsHidden"), CultureInfo.InvariantCulture);
                     contents[i].IsFloat = Convert.ToBoolean(xmlIn.GetAttribute("IsFloat"), CultureInfo.InvariantCulture);
@@ -608,7 +617,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                     if (content == null)
                         content = new DummyContent();
                     content.DockHandler.DockPanel = dockPanel;
-                    content.DockHandler.Form.Name = contents[i].FormName;
+                    if (!string.IsNullOrWhiteSpace(contents[i].FormName))
+                        content.DockHandler.Form.Name = contents[i].FormName;
+                    if (!string.IsNullOrWhiteSpace(contents[i].FormText))
+                        content.DockHandler.Form.Text = contents[i].FormText;
                     content.DockHandler.AutoHidePortion = contents[i].AutoHidePortion;
                     content.DockHandler.IsHidden = true;
                     content.DockHandler.IsFloat = contents[i].IsFloat;
