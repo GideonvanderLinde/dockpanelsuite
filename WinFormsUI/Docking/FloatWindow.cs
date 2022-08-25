@@ -28,8 +28,10 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             m_nestedPanes = new NestedPaneCollection(this);
 
-            FormBorderStyle = FormBorderStyle.SizableToolWindow;
-            ShowInTaskbar = false;
+            //SW Change: Removing below to get more standard form behaviour
+            //FormBorderStyle = FormBorderStyle.SizableToolWindow;
+            //ShowInTaskbar = false;
+
             if (dockPanel.RightToLeft != RightToLeft)
                 RightToLeft = dockPanel.RightToLeft;
             if (RightToLeftLayout != dockPanel.RightToLeftLayout)
@@ -79,7 +81,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             set	{	m_allowEndUserDocking = value;	}
         }
 
-        private bool m_doubleClickTitleBarToDock = true;
+        //SW Change: Set below to false so that double click maximises instead of docks. Default was true.
+        private bool m_doubleClickTitleBarToDock = false;
         public bool DoubleClickTitleBarToDock
         {
             get { return m_doubleClickTitleBarToDock; }
@@ -192,7 +195,9 @@ namespace WeifenLuo.WinFormsUI.Docking
                         if (IsDisposed)
                             return;
 
-                        uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                        //SW Change: m.WParam already stores the correct message whereas SendMessage incorrectly sends back HTCAPTION (2) if clicking in the centre of the maximise or minimise button
+                        //uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                        uint result = (uint)m.WParam;
                         if (result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
                         {
                             Activate();
@@ -200,7 +205,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                         }
                         else
                             base.WndProc(ref m);
-
+                        Console.WriteLine(result);
                         return;
                     }
                 case (int)Win32.Msgs.WM_NCRBUTTONDOWN:
@@ -246,9 +251,14 @@ namespace WeifenLuo.WinFormsUI.Docking
                     return;
                 case (int)Win32.Msgs.WM_NCLBUTTONDBLCLK:
                     {
-                        uint result = !DoubleClickTitleBarToDock || Win32Helper.IsRunningOnMono 
-                            ? Win32Helper.HitTestCaption(this)
-                            : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
+                        //SW Change: if DoubleClickTitleBarToDock is set to false we want to let windows carry on with default behaviour
+                        if (!DoubleClickTitleBarToDock)
+                        {
+                            base.WndProc(ref m);
+                            return;
+                        }
+
+                        uint result = Win32Helper.IsRunningOnMono ? Win32Helper.HitTestCaption(this) : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
 
                         if (result != 2)	// HITTEST_CAPTION
                         {
