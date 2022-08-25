@@ -197,7 +197,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
                         //SW Change: m.WParam already stores the correct message whereas SendMessage incorrectly sends back HTCAPTION (2) if clicking in the centre of the maximise or minimise button
                         //uint result = Win32Helper.IsRunningOnMono ? 0 : NativeMethods.SendMessage(this.Handle, (int)Win32.Msgs.WM_NCHITTEST, 0, (uint)m.LParam);
-                        uint result = (uint)m.WParam;
+                        uint result = Win32Helper.IsRunningOnMono ? 0 : (uint)m.WParam;
                         if (result == 2 && DockPanel.AllowEndUserDocking && this.AllowEndUserDocking)	// HITTEST_CAPTION
                         {
                             Activate();
