@@ -394,7 +394,15 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public  void FloatAt(Rectangle floatWindowBounds)
         {
-            Bounds = floatWindowBounds;
+            //SW Change: added below to allow drag from top when maximized to just un maximize.
+            if (WindowState == FormWindowState.Maximized && floatWindowBounds.Top > 0)
+            {
+                WindowState = FormWindowState.Normal;
+                Bounds = new Rectangle(MousePosition, Bounds.Size);
+            }    
+            else
+            //SW Change: End
+                Bounds = floatWindowBounds;
         }
 
         public void DockTo(DockPane pane, DockStyle dockStyle, int contentIndex)
