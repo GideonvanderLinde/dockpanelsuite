@@ -35,6 +35,7 @@
   <ItemGroup>
     <Compile Include="Docking\Configuration\PatchSection.cs" />
     <Compile Include="Docking\DefaultTheme.cs" />
+    <Compile Include="Docking\DockPaneCaptionBase.cs" />
     <Compile Include="Docking\DockPanel.SplitterDragHandler.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -83,9 +84,6 @@
     <Compile Include="Docking\DockOutlineBase.cs" />
     <Compile Include="Docking\DockPane.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Docking\DockPaneCaptionBase.cs">
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Docking\DockPaneCollection.cs" />
     <Compile Include="Docking\DockPanel.cs" />
