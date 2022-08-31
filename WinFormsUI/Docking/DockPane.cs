@@ -225,26 +225,6 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { m_allowDockDragAndDrop = value; }
         }
 
-
-        //SW Change : Hide the drop down menu on dock pane to select tab
-        private bool m_tabPageContextMenuVisible = true;
-        /// <summary>
-        /// Determines whether the close button is visible on the content
-        /// </summary>
-        public bool TabPageContextMenuVisible
-        {
-            get
-            {
-                return m_tabPageContextMenuVisible;
-            }
-
-            set
-            {
-                m_tabPageContextMenuVisible = value;
-            }
-        }
-        //SW Change : End
-
         private IDisposable m_autoHidePane = null;
         internal IDisposable AutoHidePane
         {
@@ -281,9 +261,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         internal bool HasTabPageContextMenu
         {
-            //SW Change : Hide the drop down menu on dock pane to select tab
-            get { return TabPageContextMenu != null && TabPageContextMenuVisible; }
-            //get { return TabPageContextMenu; }
+            get { return TabPageContextMenu != null; }
         }
 
         internal void ShowTabPageContextMenu(Control control, Point position)

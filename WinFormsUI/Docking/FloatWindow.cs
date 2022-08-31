@@ -50,7 +50,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             }
 
             m_dockPanel = dockPanel;
-            Owner = DockPanel.FindForm();
+            //SW Change: commented out below to get floating window to act as a more stand alone window
+            //Owner = DockPanel.FindForm();
             DockPanel.AddFloatWindow(this);
             if (pane != null)
                 pane.FloatWindow = this;
