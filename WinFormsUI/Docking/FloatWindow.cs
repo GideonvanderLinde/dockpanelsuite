@@ -90,6 +90,21 @@ namespace WeifenLuo.WinFormsUI.Docking
             set { m_doubleClickTitleBarToDock = value; }
         }
 
+        //SW Change: Adding default icon and text for when there are nested panes in a floating window
+        public Icon m_defaultIcon { get; set; }
+        public Icon DefaultIcon
+        {
+            get { return m_defaultIcon; }
+            set { m_defaultIcon = value; }
+        }
+        public string m_defaultText { get; set; }
+        public string DefaultText
+        {
+            get { return m_defaultText; }
+            set { m_defaultText = value; }
+        }
+        //SW Change: End
+
         public NestedPaneCollection NestedPanes
         {
             get	{	return m_nestedPanes;	}
@@ -163,8 +178,13 @@ namespace WeifenLuo.WinFormsUI.Docking
 
             if (theOnlyPane == null || theOnlyPane.ActiveContent == null)
             {
-                Text = " ";	// use " " instead of string.Empty because the whole title bar will disappear when ControlBox is set to false.
-                Icon = null;
+
+                //SW Change: Adding default icon and text for when there are nested panes in a floating window
+                Text = string.IsNullOrWhiteSpace(DefaultText) ? " " : DefaultText;
+                Icon = DefaultIcon;
+                //Text = " ";	// use " " instead of string.Empty because the whole title bar will disappear when ControlBox is set to false.
+                //Icon = null;
+                //SW Change: End
             }
             else
             {
