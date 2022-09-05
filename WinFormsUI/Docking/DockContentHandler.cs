@@ -876,6 +876,10 @@ namespace WeifenLuo.WinFormsUI.Docking
             Form.Parent = value;
             if (PatchController.EnableMainWindowFocusLostFix == true && parentChanged)
             {
+                //SW Change: when dragging a docked item out, creating a floating window, we often end up focused on the last focused docked document
+                //This happens because above we call GiveUpFocus which focuses no the last document 
+                DockPanel.ContentFocusManager.Activate(this.Content);
+                //SW Change: end
                 Form.Focus();
             }
 
