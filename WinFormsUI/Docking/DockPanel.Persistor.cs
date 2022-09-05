@@ -5,6 +5,7 @@ using System.IO;
 using System.Text;
 using System.Xml;
 using System.Globalization;
+using System.Windows.Forms;
 
 namespace WeifenLuo.WinFormsUI.Docking
 {
@@ -211,6 +212,13 @@ namespace WeifenLuo.WinFormsUI.Docking
                     set { m_zOrderIndex = value; }
                 }
 
+                private FormWindowState m_windowState;
+                public FormWindowState WindowState
+                {
+                    get { return m_windowState; }
+                    set { m_windowState = value; }
+                }
+
                 private NestedPane[] m_nestedPanes;
                 public NestedPane[] NestedPanes
                 {
@@ -348,6 +356,7 @@ namespace WeifenLuo.WinFormsUI.Docking
                 {
                     xmlOut.WriteStartElement("FloatWindow");
                     xmlOut.WriteAttributeString("ID", dockPanel.FloatWindows.IndexOf(fw).ToString(CultureInfo.InvariantCulture));
+                    xmlOut.WriteAttributeString("WindowState", fw.WindowState.ToString());
                     xmlOut.WriteAttributeString("Bounds", rectConverter.ConvertToInvariantString(fw.Bounds));
                     xmlOut.WriteAttributeString("ZOrderIndex", fw.DockPanel.FloatWindows.IndexOf(fw).ToString(CultureInfo.InvariantCulture));
                     xmlOut.WriteStartElement("NestedPanes");
@@ -504,6 +513,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                         throw new ArgumentException(Strings.DockPanel_LoadFromXml_InvalidXmlFormat);
 
                     floatWindows[i].Bounds = (Rectangle)rectConverter.ConvertFromInvariantString(xmlIn.GetAttribute("Bounds"));
+
+                    if (Enum.TryParse(xmlIn.GetAttribute("WindowState"), out FormWindowState state))
+                        floatWindows[i].WindowState = state;
+
                     floatWindows[i].ZOrderIndex = Convert.ToInt32(xmlIn.GetAttribute("ZOrderIndex"), CultureInfo.InvariantCulture);
                     MoveToNextElement(xmlIn);
                     if (xmlIn.Name != "DockList" && xmlIn.Name != "NestedPanes")
@@ -669,7 +682,10 @@ namespace WeifenLuo.WinFormsUI.Docking
                         int indexPane = floatWindows[i].NestedPanes[j].IndexPane;
                         DockPane pane = dockPanel.Panes[indexPane];
                         if (j == 0)
+                        {
                             fw = dockPanel.Theme.Extender.FloatWindowFactory.CreateFloatWindow(dockPanel, pane, floatWindows[i].Bounds);
+                            fw.WindowState = floatWindows[i].WindowState;
+                        }
                         else
                         {
                             int indexPrevPane = floatWindows[i].NestedPanes[j].IndexPrevPane;
