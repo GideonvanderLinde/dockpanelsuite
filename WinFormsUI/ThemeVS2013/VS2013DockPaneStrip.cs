@@ -1379,8 +1379,13 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
             {
                 ButtonOverflow.Visible = m_documentTabsOverflow;
                 ButtonOverflow.RefreshChanges();
-
-                ButtonWindowList.Visible = !m_documentTabsOverflow;
+                //SW Change: Add HideButtonWindowList to allow hiding the window list context menu
+                if (DockPane.DockPanel.HideButtonWindowList)
+                    ButtonWindowList.Visible = false;
+                else 
+                    ButtonWindowList.Visible = !m_documentTabsOverflow;
+                //ButtonWindowList.Visible = !m_documentTabsOverflow;
+                //SW Change: End
                 ButtonWindowList.RefreshChanges();
             }
         }

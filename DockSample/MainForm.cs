@@ -35,6 +35,8 @@ namespace DockSample
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
 
             vsToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
+
+            dockPanel.HideButtonWindowList = true;
         }
 
         #region Methods

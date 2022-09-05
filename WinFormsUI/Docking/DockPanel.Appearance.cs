@@ -15,6 +15,10 @@
             get { return null;  }
         }
 
+        //SW Change: Add HideButtonWindowList to allow hiding the window list context menu
+        public bool HideButtonWindowList { get; set; }
+        //SW Change: End
+
         private ThemeBase m_dockPanelTheme = new DefaultTheme();
 
         [LocalizedCategory("Category_Docking")]
