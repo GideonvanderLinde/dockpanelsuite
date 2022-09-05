@@ -68,6 +68,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ThemeVS2015\VS2015SandwichLightGreenTheme.cs" />
     <Compile Include="ThemeVS2015\VS2015ThemeBase.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -123,6 +124,7 @@
     <None Include="ThemeVS2015\Resources\vs2015blue.vstheme.gz" />
     <None Include="ThemeVS2015\Resources\vs2015dark.vstheme.gz" />
     <None Include="ThemeVS2015\Resources\vs2015light.vstheme.gz" />
+    <None Include="ThemeVS2015\Resources\vs2015sandwichlightgreen.vstheme.gz" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj" />
