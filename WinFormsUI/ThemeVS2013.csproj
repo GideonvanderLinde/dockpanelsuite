@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
-
   <PropertyGroup>
     <PackageId>DockPanelSuite.ThemeVS2013</PackageId>
     <PackageVersion>3.1.0</PackageVersion>
@@ -14,7 +13,7 @@
       Release notes can be found at GitHub,
       https://github.com/dockpanelsuite/dockpanelsuite/releases
     </PackageReleaseNotes>
-    <TargetFrameworks>netcoreapp3.1;net472</TargetFrameworks>
+    <TargetFrameworks>net6.0-windows</TargetFrameworks>
     <UseWindowsForms>true</UseWindowsForms>
     <StartupObject />
     <RootNamespace>WeifenLuo.WinFormsUI</RootNamespace>
@@ -24,7 +23,6 @@
     <EnableDefaultItems>false</EnableDefaultItems>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Include="ThemeVS2012\ImageService.cs" />
     <Compile Include="ThemeVS2012\Resources.Designer.cs">
@@ -127,5 +125,9 @@
   <ItemGroup>
     <ProjectReference Include="WinFormsUI.csproj" />
   </ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.4.346202">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+  </ItemGroup>
 </Project>
