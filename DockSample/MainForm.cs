@@ -161,6 +161,7 @@ namespace DockSample
         
         private void SetSchema(object sender, System.EventArgs e)
         {
+            vS2015SandwichLightGreenTheme1 = new();
             // Persist settings when rebuilding UI
             string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.temp.config");
 
@@ -222,6 +223,11 @@ namespace DockSample
                 this.dockPanel.Theme = this.vS2015DarkTheme1;
                 this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015DarkTheme1);
             }
+            else if (sender == this.menuItemSchemaSWLightGreen)
+            {
+                this.dockPanel.Theme = this.vS2015SandwichLightGreenTheme1;
+                this.EnableVSRenderer(VisualStudioToolStripExtender.VsVersion.Vs2015, vS2015SandwichLightGreenTheme1);
+            }
 
             menuItemSchemaVS2005.Checked = (sender == menuItemSchemaVS2005);
             menuItemSchemaVS2003.Checked = (sender == menuItemSchemaVS2003);
@@ -234,6 +240,7 @@ namespace DockSample
             menuItemSchemaVS2015Light.Checked = (sender == menuItemSchemaVS2015Light);
             menuItemSchemaVS2015Blue.Checked = (sender == menuItemSchemaVS2015Blue);
             menuItemSchemaVS2015Dark.Checked = (sender == menuItemSchemaVS2015Dark);
+            menuItemSchemaSWLightGreen.Checked = (sender == menuItemSchemaSWLightGreen);
             if (dockPanel.Theme.ColorPalette != null)
             {
                 statusBar.BackColor = dockPanel.Theme.ColorPalette.MainWindowStatusBarDefault.Background;

@@ -51,10 +51,16 @@ namespace DockSample
             this.menuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuItemLayoutByCode = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLayoutByXml = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.subMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.disabledItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemTools = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemLockLayout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemShowDocumentIcon = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItem3 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuItemSchemaSWLightGreen = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2015Light = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2015Blue = new System.Windows.Forms.ToolStripMenuItem();
             this.menuItemSchemaVS2015Dark = new System.Windows.Forms.ToolStripMenuItem();
@@ -91,11 +97,6 @@ namespace DockSample
             this.toolBarButtonSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolBarButtonLayoutByCode = new System.Windows.Forms.ToolStripButton();
             this.toolBarButtonLayoutByXml = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.subMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemAToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.itemBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.disabledItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
             this.vS2015DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015DarkTheme();
             this.vS2015BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015BlueTheme();
@@ -109,6 +110,7 @@ namespace DockSample
             this.vS2012BlueTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012BlueTheme();
             this.vS2012DarkTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2012DarkTheme();
             this.vsToolStripExtender1 = new WeifenLuo.WinFormsUI.Docking.VisualStudioToolStripExtender(this.components);
+            this.vS2015SandwichLightGreenTheme1 = new WeifenLuo.WinFormsUI.Docking.VS2015SandwichLightGreenTheme();
             this.mainMenu.SuspendLayout();
             this.toolBar.SuspendLayout();
             this.SuspendLayout();
@@ -146,54 +148,54 @@ namespace DockSample
             // menuItemNew
             // 
             this.menuItemNew.Name = "menuItemNew";
-            this.menuItemNew.Size = new System.Drawing.Size(215, 22);
+            this.menuItemNew.Size = new System.Drawing.Size(216, 22);
             this.menuItemNew.Text = "&New";
             this.menuItemNew.Click += new System.EventHandler(this.menuItemNew_Click);
             // 
             // menuItemOpen
             // 
             this.menuItemOpen.Name = "menuItemOpen";
-            this.menuItemOpen.Size = new System.Drawing.Size(215, 22);
+            this.menuItemOpen.Size = new System.Drawing.Size(216, 22);
             this.menuItemOpen.Text = "&Open...";
             this.menuItemOpen.Click += new System.EventHandler(this.menuItemOpen_Click);
             // 
             // menuItemClose
             // 
             this.menuItemClose.Name = "menuItemClose";
-            this.menuItemClose.Size = new System.Drawing.Size(215, 22);
+            this.menuItemClose.Size = new System.Drawing.Size(216, 22);
             this.menuItemClose.Text = "&Close";
             this.menuItemClose.Click += new System.EventHandler(this.menuItemClose_Click);
             // 
             // menuItemCloseAll
             // 
             this.menuItemCloseAll.Name = "menuItemCloseAll";
-            this.menuItemCloseAll.Size = new System.Drawing.Size(215, 22);
+            this.menuItemCloseAll.Size = new System.Drawing.Size(216, 22);
             this.menuItemCloseAll.Text = "Close &All";
             this.menuItemCloseAll.Click += new System.EventHandler(this.menuItemCloseAll_Click);
             // 
             // menuItemCloseAllButThisOne
             // 
             this.menuItemCloseAllButThisOne.Name = "menuItemCloseAllButThisOne";
-            this.menuItemCloseAllButThisOne.Size = new System.Drawing.Size(215, 22);
+            this.menuItemCloseAllButThisOne.Size = new System.Drawing.Size(216, 22);
             this.menuItemCloseAllButThisOne.Text = "Close All &But This One";
             this.menuItemCloseAllButThisOne.Click += new System.EventHandler(this.menuItemCloseAllButThisOne_Click);
             // 
             // menuItem4
             // 
             this.menuItem4.Name = "menuItem4";
-            this.menuItem4.Size = new System.Drawing.Size(212, 6);
+            this.menuItem4.Size = new System.Drawing.Size(213, 6);
             // 
             // menuItemExit
             // 
             this.menuItemExit.Name = "menuItemExit";
-            this.menuItemExit.Size = new System.Drawing.Size(215, 22);
+            this.menuItemExit.Size = new System.Drawing.Size(216, 22);
             this.menuItemExit.Text = "&Exit";
             this.menuItemExit.Click += new System.EventHandler(this.menuItemExit_Click);
             // 
             // exitWithoutSavingLayout
             // 
             this.exitWithoutSavingLayout.Name = "exitWithoutSavingLayout";
-            this.exitWithoutSavingLayout.Size = new System.Drawing.Size(215, 22);
+            this.exitWithoutSavingLayout.Size = new System.Drawing.Size(216, 22);
             this.exitWithoutSavingLayout.Text = "Exit &Without Saving Layout";
             this.exitWithoutSavingLayout.Click += new System.EventHandler(this.exitWithoutSavingLayout_Click);
             // 
@@ -297,12 +299,46 @@ namespace DockSample
             this.menuItemLayoutByXml.Text = "Layout By &XML";
             this.menuItemLayoutByXml.Click += new System.EventHandler(this.menuItemLayoutByXml_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(182, 6);
+            // 
+            // subMenuToolStripMenuItem
+            // 
+            this.subMenuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.itemAToolStripMenuItem,
+            this.itemBToolStripMenuItem});
+            this.subMenuToolStripMenuItem.Name = "subMenuToolStripMenuItem";
+            this.subMenuToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.subMenuToolStripMenuItem.Text = "Sub menu";
+            // 
+            // itemAToolStripMenuItem
+            // 
+            this.itemAToolStripMenuItem.Name = "itemAToolStripMenuItem";
+            this.itemAToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.itemAToolStripMenuItem.Text = "Item A";
+            // 
+            // itemBToolStripMenuItem
+            // 
+            this.itemBToolStripMenuItem.Name = "itemBToolStripMenuItem";
+            this.itemBToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.itemBToolStripMenuItem.Text = "Item B";
+            // 
+            // disabledItemToolStripMenuItem
+            // 
+            this.disabledItemToolStripMenuItem.Enabled = false;
+            this.disabledItemToolStripMenuItem.Name = "disabledItemToolStripMenuItem";
+            this.disabledItemToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.disabledItemToolStripMenuItem.Text = "Disabled Item";
+            // 
             // menuItemTools
             // 
             this.menuItemTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuItemLockLayout,
             this.menuItemShowDocumentIcon,
             this.menuItem3,
+            this.menuItemSchemaSWLightGreen,
             this.menuItemSchemaVS2015Light,
             this.menuItemSchemaVS2015Blue,
             this.menuItemSchemaVS2015Dark,
@@ -323,7 +359,7 @@ namespace DockSample
             this.showRightToLeft});
             this.menuItemTools.MergeIndex = 2;
             this.menuItemTools.Name = "menuItemTools";
-            this.menuItemTools.Size = new System.Drawing.Size(47, 20);
+            this.menuItemTools.Size = new System.Drawing.Size(46, 20);
             this.menuItemTools.Text = "&Tools";
             this.menuItemTools.DropDownOpening += new System.EventHandler(this.menuItemTools_Popup);
             // 
@@ -345,6 +381,13 @@ namespace DockSample
             // 
             this.menuItem3.Name = "menuItem3";
             this.menuItem3.Size = new System.Drawing.Size(252, 6);
+            // 
+            // menuItemSchemaSWLightGreen
+            // 
+            this.menuItemSchemaSWLightGreen.Name = "menuItemSchemaSWLightGreen";
+            this.menuItemSchemaSWLightGreen.Size = new System.Drawing.Size(255, 22);
+            this.menuItemSchemaSWLightGreen.Text = "Schema: SW Light Green";
+            this.menuItemSchemaSWLightGreen.Click += new System.EventHandler(this.SetSchema);
             // 
             // menuItemSchemaVS2015Light
             // 
@@ -514,6 +557,7 @@ namespace DockSample
             // 
             // imageList
             // 
+            this.imageList.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
             this.imageList.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList.Images.SetKeyName(0, "");
@@ -620,39 +664,6 @@ namespace DockSample
             this.toolBarButtonLayoutByXml.Size = new System.Drawing.Size(23, 22);
             this.toolBarButtonLayoutByXml.ToolTipText = "Show layout by predefined XML file";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(182, 6);
-            // 
-            // subMenuToolStripMenuItem
-            // 
-            this.subMenuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.itemAToolStripMenuItem,
-            this.itemBToolStripMenuItem});
-            this.subMenuToolStripMenuItem.Name = "subMenuToolStripMenuItem";
-            this.subMenuToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.subMenuToolStripMenuItem.Text = "Sub menu";
-            // 
-            // itemAToolStripMenuItem
-            // 
-            this.itemAToolStripMenuItem.Name = "itemAToolStripMenuItem";
-            this.itemAToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.itemAToolStripMenuItem.Text = "Item A";
-            // 
-            // itemBToolStripMenuItem
-            // 
-            this.itemBToolStripMenuItem.Name = "itemBToolStripMenuItem";
-            this.itemBToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
-            this.itemBToolStripMenuItem.Text = "Item B";
-            // 
-            // disabledItemToolStripMenuItem
-            // 
-            this.disabledItemToolStripMenuItem.Enabled = false;
-            this.disabledItemToolStripMenuItem.Name = "disabledItemToolStripMenuItem";
-            this.disabledItemToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.disabledItemToolStripMenuItem.Text = "Disabled Item";
-            // 
             // dockPanel
             // 
             this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -661,15 +672,14 @@ namespace DockSample
             this.dockPanel.DockLeftPortion = 200D;
             this.dockPanel.DockRightPortion = 200D;
             this.dockPanel.DockTopPortion = 150D;
-            this.dockPanel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World, ((byte)(0)));
+            this.dockPanel.Font = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.World);
+            this.dockPanel.HideButtonWindowList = false;
             this.dockPanel.Location = new System.Drawing.Point(0, 49);
             this.dockPanel.Name = "dockPanel";
-            this.dockPanel.Padding = new System.Windows.Forms.Padding(6);
             this.dockPanel.RightToLeftLayout = true;
             this.dockPanel.ShowAutoHideContentOnHover = false;
             this.dockPanel.Size = new System.Drawing.Size(579, 338);
             this.dockPanel.TabIndex = 0;
-            //this.dockPanel.Theme = this.vS2013BlueTheme1;
             // 
             // vsToolStripExtender1
             // 
@@ -781,5 +791,7 @@ namespace DockSample
         private System.Windows.Forms.ToolStripMenuItem itemAToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemBToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem disabledItemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuItemSchemaSWLightGreen;
+        private WeifenLuo.WinFormsUI.Docking.VS2015SandwichLightGreenTheme vS2015SandwichLightGreenTheme1;
     }
 }
