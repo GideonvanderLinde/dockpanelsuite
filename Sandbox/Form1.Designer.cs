@@ -30,10 +30,10 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pnlLeft = new System.Windows.Forms.Panel();
+            this.btnApply = new System.Windows.Forms.Button();
             this.propertyGrid1 = new System.Windows.Forms.PropertyGrid();
             this.btnReset = new System.Windows.Forms.Button();
             this.dockPanel = new WeifenLuo.WinFormsUI.Docking.DockPanel();
-            this.btnApply = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -69,6 +69,17 @@
             this.pnlLeft.Size = new System.Drawing.Size(338, 649);
             this.pnlLeft.TabIndex = 4;
             // 
+            // btnApply
+            // 
+            this.btnApply.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btnApply.Location = new System.Drawing.Point(0, 603);
+            this.btnApply.Name = "btnApply";
+            this.btnApply.Size = new System.Drawing.Size(338, 23);
+            this.btnApply.TabIndex = 4;
+            this.btnApply.Text = "Apply";
+            this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            // 
             // propertyGrid1
             // 
             this.propertyGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -90,23 +101,13 @@
             // 
             // dockPanel
             // 
+            this.dockPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.dockPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dockPanel.HideButtonWindowList = false;
             this.dockPanel.Location = new System.Drawing.Point(0, 0);
             this.dockPanel.Name = "dockPanel";
             this.dockPanel.Size = new System.Drawing.Size(673, 649);
             this.dockPanel.TabIndex = 2;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btnApply.Location = new System.Drawing.Point(0, 603);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(338, 23);
-            this.btnApply.TabIndex = 4;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // Form1
             // 

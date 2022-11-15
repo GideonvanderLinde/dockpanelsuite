@@ -137,6 +137,9 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         protected override void OnPaint(PaintEventArgs e)
         {
+            if (BackColor != DockPanel.Theme.ColorPalette.MainWindowActive.Background)
+                BackColor = DockPanel.Theme.ColorPalette.MainWindowActive.Background;
+
             base.OnPaint(e);
             Graphics g = e.Graphics;
             DrawTabStrip(g);

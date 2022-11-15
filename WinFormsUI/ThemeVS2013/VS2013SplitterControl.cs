@@ -9,7 +9,7 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
     [ToolboxItem(false)]
     internal class VS2013SplitterControl : DockPane.SplitterControlBase
     {
-        private readonly SolidBrush _horizontalBrush;
+        private SolidBrush _horizontalBrush;
         private int SplitterSize { get; }
 
         public VS2013SplitterControl(DockPane pane)
@@ -22,6 +22,9 @@ namespace WeifenLuo.WinFormsUI.ThemeVS2013
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
+
+            if (_horizontalBrush.Color != DockPane.DockPanel.Theme.ColorPalette.MainWindowActive.Background)
+                _horizontalBrush = DockPane.DockPanel.Theme.PaintingService.GetBrush(DockPane.DockPanel.Theme.ColorPalette.MainWindowActive.Background);
 
             Rectangle rect = ClientRectangle;
             if (rect.Width <= 0 || rect.Height <= 0)

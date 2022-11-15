@@ -138,6 +138,7 @@
     <Compile Include="Docking\Win32\NativeMethods.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Docking\DockPanel.Appearance.resx" />
     <EmbeddedResource Include="Docking\Strings.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>

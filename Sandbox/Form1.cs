@@ -17,12 +17,16 @@ namespace Sandbox
             dockPanel.Theme = new VS2015SandwichLightGreenTheme();
             try
             {
-                if (File.Exists("ThemeVS2015\\Resources\\vs2015sandwichlightgreen.json"))
+                string filePath = "C:\\Users\\dagin\\source\\repos\\Sandwich\\Sandwich\\bin\\Debug\\ThemePink.json";
+                //string filePath = "ThemeVS2015\\Resources\\vs2015sandwichlightgreen.json"
+                if (File.Exists(filePath))
                 {
 
-                    DockPanelColorPalette palette = JsonConvert.DeserializeObject<DockPanelColorPalette>(File.ReadAllText("ThemeVS2015\\Resources\\vs2015sandwichlightgreen.json"));
+                    DockPanelColorPalette palette = JsonConvert.DeserializeObject<DockPanelColorPalette>(File.ReadAllText(filePath));
                     if (palette != null)
                         (dockPanel.Theme as VS2015SandwichLightGreenTheme).SetPalette(palette);
+
+                    dockPanel.Theme.ApplyTo(dockPanel);
                 }
             }
             catch
@@ -42,7 +46,7 @@ namespace Sandbox
             doc4.Show(doc3.Pane, DockAlignment.Right, 0.5);
 
             propertyGrid1.SelectedObject = dockPanel.Theme.ColorPalette;
-
+            //dockPanel.DockBackColor
             dockPanel.ResumeLayout(true, true);
         }
 
@@ -58,6 +62,7 @@ namespace Sandbox
             var theme = new VS2015SandwichLightGreenTheme();
             (dockPanel.Theme as VS2015SandwichLightGreenTheme).SetPalette(theme.ColorPalette);
             propertyGrid1.SelectedObject = dockPanel.Theme.ColorPalette;
+            RefreshControls();
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -69,6 +74,12 @@ namespace Sandbox
             string theme = JsonConvert.SerializeObject(dockPanel.Theme.ColorPalette);
             File.WriteAllText("ThemeVS2015\\Resources\\vs2015sandwichlightgreen.json", theme);
             (dockPanel.Theme as VS2015SandwichLightGreenTheme).SetPalette(dockPanel.Theme.ColorPalette);
+            RefreshControls();
+        }
+
+        private void RefreshControls()
+        {
+            dockPanel.Refresh();
         }
     }
 }
