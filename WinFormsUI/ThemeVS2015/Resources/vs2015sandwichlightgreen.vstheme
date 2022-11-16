@@ -5,7 +5,7 @@
         <Background Type="CT_RAW" Source="FF111111" /> <!--use-->
       </Color>
       <Color Name="AutoHideTabBackgroundBegin">
-        <Background Type="CT_RAW" Source="ffc0cb" /> <!--use-->
+        <Background Type="CT_RAW" Source="FFDEE8E7" /> <!--use-->
       </Color>
       <Color Name="AutoHideTabBorder">
         <Background Type="CT_RAW" Source="FF88ACA9" /> <!--use-->
@@ -116,7 +116,7 @@
         <Background Type="CT_RAW" Source="FF29E4CC" /> <!--use-->
       </Color>
       <Color Name="EnvironmentBackground">
-        <Background Type="CT_RAW" Source="ffc0cb" /> <!--use-->
+        <Background Type="CT_RAW" Source="FFDEE8E7" /> <!--use-->
       </Color>
       <Color Name="FileTabSelectedBorder">
         <Background Type="CT_RAW" Source="FFBEA326" /> <!--use-->
