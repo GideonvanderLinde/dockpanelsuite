@@ -17,7 +17,7 @@ namespace Sandbox
             dockPanel.Theme = new VS2015SandwichLightGreenTheme();
             try
             {
-                string filePath = "C:\\Users\\dagin\\source\\repos\\Sandwich\\Sandwich\\bin\\Debug\\ThemePink.json";
+                string filePath = "";// "C:\\Users\\dagin\\source\\repos\\Sandwich\\Sandwich\\bin\\Debug\\ThemePink.json";
                 //string filePath = "ThemeVS2015\\Resources\\vs2015sandwichlightgreen.json"
                 if (File.Exists(filePath))
                 {
