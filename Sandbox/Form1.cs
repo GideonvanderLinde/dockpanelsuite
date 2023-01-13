@@ -39,11 +39,16 @@ namespace Sandbox
             DummyDoc doc2 = CreateNewDocument("Document2");
             DummyDoc doc3 = CreateNewDocument("Document3");
             DummyDoc doc4 = CreateNewDocument("Document4");
+
             doc1.Show(dockPanel, DockState.Document);
-            doc2.Show(dockPanel, DockState.DockLeft);
+            doc2.Show(dockPanel, DockState.Document);
+            doc3.Show(dockPanel, DockState.Document);
+            doc4.Show(dockPanel, DockState.Document);
+
+            //doc2.Show(dockPanel, DockState.DockLeft);
             //doc2.Show(doc1.Pane, null);
-            doc3.Show(doc1.Pane, DockAlignment.Bottom, 0.5);
-            doc4.Show(doc3.Pane, DockAlignment.Right, 0.5);
+            //doc3.Show(doc1.Pane, DockAlignment.Bottom, 0.5);
+            //doc4.Show(doc3.Pane, DockAlignment.Right, 0.5);
 
             propertyGrid1.SelectedObject = dockPanel.Theme.ColorPalette;
             //dockPanel.DockBackColor
