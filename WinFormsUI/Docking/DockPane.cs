@@ -163,53 +163,61 @@ namespace WeifenLuo.WinFormsUI.Docking
             get { return m_activeContent; }
             set
             {
-                if (ActiveContent == value)
-                    return;
-
-                if (value != null)
+                PaintUtils.SetRedrawOff(this);
+                try
                 {
-                    if (!DisplayingContents.Contains(value))
-                        throw (new InvalidOperationException(Strings.DockPane_ActiveContent_InvalidValue));
-                }
-                else
-                {
-                    if (DisplayingContents.Count != 0)
-                        throw (new InvalidOperationException(Strings.DockPane_ActiveContent_InvalidValue));
-                }
+                    if (ActiveContent == value)
+                        return;
 
-                IDockContent oldValue = m_activeContent;
+                    if (value != null)
+                    {
+                        if (!DisplayingContents.Contains(value))
+                            throw (new InvalidOperationException(Strings.DockPane_ActiveContent_InvalidValue));
+                    }
+                    else
+                    {
+                        if (DisplayingContents.Count != 0)
+                            throw (new InvalidOperationException(Strings.DockPane_ActiveContent_InvalidValue));
+                    }
 
-                if (DockPanel.ActiveAutoHideContent == oldValue)
-                    DockPanel.ActiveAutoHideContent = null;
+                    IDockContent oldValue = m_activeContent;
 
-                m_activeContent = value;
+                    if (DockPanel.ActiveAutoHideContent == oldValue)
+                        DockPanel.ActiveAutoHideContent = null;
 
-                if (DockPanel.DocumentStyle == DocumentStyle.DockingMdi && DockState == DockState.Document)
-                {
+                    m_activeContent = value;
+
+                    if (DockPanel.DocumentStyle == DocumentStyle.DockingMdi && DockState == DockState.Document)
+                    {
+                        if (m_activeContent != null)
+                            m_activeContent.DockHandler.Form.BringToFront();
+                    }
+                    else
+                    {
+                        if (m_activeContent != null)
+                            m_activeContent.DockHandler.SetVisible();
+                        if (oldValue != null && DisplayingContents.Contains(oldValue))
+                            oldValue.DockHandler.SetVisible();
+                        if (IsActivated && m_activeContent != null)
+                            m_activeContent.DockHandler.Activate();
+                    }
+
+                    if (FloatWindow != null)
+                        FloatWindow.SetText();
+
+                    if (DockPanel.DocumentStyle == DocumentStyle.DockingMdi &&
+                        DockState == DockState.Document)
+                        RefreshChanges(false);  // delayed layout to reduce screen flicker
+                    else
+                        RefreshChanges();
+
                     if (m_activeContent != null)
-                        m_activeContent.DockHandler.Form.BringToFront();
+                        TabStripControl.EnsureTabVisible(m_activeContent);
                 }
-                else
+                finally
                 {
-                    if (m_activeContent != null)
-                        m_activeContent.DockHandler.SetVisible();
-                    if (oldValue != null && DisplayingContents.Contains(oldValue))
-                        oldValue.DockHandler.SetVisible();
-                    if (IsActivated && m_activeContent != null)
-                        m_activeContent.DockHandler.Activate();
+                    PaintUtils.SetRedrawOn(this);
                 }
-
-                if (FloatWindow != null)
-                    FloatWindow.SetText();
-
-                if (DockPanel.DocumentStyle == DocumentStyle.DockingMdi &&
-                    DockState == DockState.Document)
-                    RefreshChanges(false);  // delayed layout to reduce screen flicker
-                else
-                    RefreshChanges();
-
-                if (m_activeContent != null)
-                    TabStripControl.EnsureTabVisible(m_activeContent);
             }
         }
 
