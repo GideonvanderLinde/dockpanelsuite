@@ -848,6 +848,7 @@ namespace WeifenLuo.WinFormsUI.Docking
 
         public void SuspendLayout(bool allWindows)
         {
+            PaintUtils.SetRedrawOff(this);
             FocusManager.SuspendFocusTracking();
             SuspendLayout();
             if (allWindows)
@@ -860,6 +861,8 @@ namespace WeifenLuo.WinFormsUI.Docking
             ResumeLayout(performLayout);
             if (allWindows)
                 ResumeMdiClientLayout(performLayout);
+
+            PaintUtils.SetRedrawOn(this);
         }
 
         internal Form ParentForm
